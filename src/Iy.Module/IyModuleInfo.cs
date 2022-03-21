@@ -4,11 +4,11 @@ namespace Iy.Module
 {
     public class IyModuleInfo
     {
-        public Assembly Assembly { get; }
-
         public Type Type { get; }
 
         public IyModule Instance { get; }
+
+        public Assembly Assembly { get; }
 
         public List<IyModuleInfo> Dependencies { get; }
 
