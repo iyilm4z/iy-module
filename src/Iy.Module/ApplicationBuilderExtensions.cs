@@ -1,16 +1,16 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Iy.Module
 {
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseIyModule(this IApplicationBuilder app)
+        public static IServiceProvider UseIyModule(this IServiceProvider serviceProvider)
         {
-            var iyApp = app.ApplicationServices.GetRequiredService<IyApplication>();
-            iyApp.InitModules(app);
+            var iyApp = serviceProvider.GetRequiredService<IyApplication>();
+            iyApp.InitModules(serviceProvider);
 
-            return app;
+            return serviceProvider;
         }
     }
 }

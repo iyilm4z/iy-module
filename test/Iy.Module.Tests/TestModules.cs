@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Iy.Module.Tests
@@ -10,7 +10,7 @@ namespace Iy.Module.Tests
         {
         }
 
-        public override void Configure(IApplicationBuilder app)
+        public override void Configure(IServiceProvider serviceProvider)
         {
         }
     }
@@ -22,7 +22,7 @@ namespace Iy.Module.Tests
         {
         }
 
-        public override void Configure(IApplicationBuilder app)
+        public override void Configure(IServiceProvider serviceProvider)
         {
         }
     }
@@ -34,7 +34,7 @@ namespace Iy.Module.Tests
         {
         }
 
-        public override void Configure(IApplicationBuilder app)
+        public override void Configure(IServiceProvider serviceProvider)
         {
         }
     }
@@ -46,7 +46,7 @@ namespace Iy.Module.Tests
         {
         }
 
-        public override void Configure(IApplicationBuilder app)
+        public override void Configure(IServiceProvider serviceProvider)
         {
         }
     }
@@ -58,7 +58,7 @@ namespace Iy.Module.Tests
         {
         }
 
-        public override void Configure(IApplicationBuilder app)
+        public override void Configure(IServiceProvider serviceProvider)
         {
         }
     }

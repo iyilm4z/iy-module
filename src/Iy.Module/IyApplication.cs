@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Iy.Module
@@ -28,11 +29,11 @@ namespace Iy.Module
             }
         }
 
-        public void InitModules(IApplicationBuilder app)
+        public void InitModules(IServiceProvider serviceProvider)
         {
             foreach (var module in _modules)
             {
-                module.Instance.Configure(app);
+                module.Instance.Configure(serviceProvider);
             }
         }
     }

@@ -1,18 +1,25 @@
-﻿namespace Iy.Module.Demo
+﻿using System;
+using Iy.Module.AspNetCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace Iy.Module.Demo.Mvc
 {
     [DependsOn(
         typeof(IyKernelModule)
     )]
-    public class IyDemoModule : IyModule
+    public class IyDemoMvcModule : IyModule
     {
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
         }
 
-        public override void Configure(IApplicationBuilder app)
+        public override void Configure(IServiceProvider serviceProvider)
         {
-            var env = app.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
+            var env = serviceProvider.GetRequiredWebHostEnvironment();
+            var app = serviceProvider.GetRequiredApplicationBuilder();
 
             if (!env.IsDevelopment())
             {

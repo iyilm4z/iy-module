@@ -1,66 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
-namespace Iy.Module;
-
-internal static class IyModuleHelper
+namespace Iy.Module
 {
-    public static List<Type> FindAllModuleTypes(Type startupModuleType)
+    internal static class IyModuleHelper
     {
-        var moduleTypes = new List<Type>();
-
-        AddModuleAndDependenciesRecursively(moduleTypes, startupModuleType);
-
-        if (!moduleTypes.Contains(typeof(IyKernelModule)))
+        public static List<Type> FindAllModuleTypes(Type startupModuleType)
         {
-            moduleTypes.Add(typeof(IyKernelModule));
-        }
+            var moduleTypes = new List<Type>();
 
-        return moduleTypes;
-    }
+            AddModuleAndDependenciesRecursively(moduleTypes, startupModuleType);
 
-    public static List<Type> FindDependedModuleTypes(Type moduleType)
-    {
-        if (!IyModule.IsIyModule(moduleType))
-        {
-            throw new ArgumentNullException(nameof(moduleType));
-        }
-
-        var dependencies = new List<Type>();
-
-        if (moduleType.GetTypeInfo().IsDefined(typeof(DependsOnAttribute), true))
-        {
-            var dependsOnAttributes = moduleType.GetTypeInfo()
-                .GetCustomAttributes(typeof(DependsOnAttribute), true)
-                .Cast<DependsOnAttribute>();
-
-            foreach (var dependsOnAttribute in dependsOnAttributes)
+            if (!moduleTypes.Contains(typeof(IyKernelModule)))
             {
-                dependencies.AddRange(dependsOnAttribute.DependedModuleTypes);
+                moduleTypes.Add(typeof(IyKernelModule));
             }
+
+            return moduleTypes;
         }
 
-        return dependencies;
-    }
-
-    private static void AddModuleAndDependenciesRecursively(List<Type> moduleTypes, Type moduleType)
-    {
-        if (!IyModule.IsIyModule(moduleType))
+        public static List<Type> FindDependedModuleTypes(Type moduleType)
         {
-            throw new ArgumentNullException(nameof(moduleType));
+            if (!IyModule.IsIyModule(moduleType))
+            {
+                throw new ArgumentNullException(nameof(moduleType));
+            }
+
+            var dependencies = new List<Type>();
+
+            if (moduleType.GetTypeInfo().IsDefined(typeof(DependsOnAttribute), true))
+            {
+                var dependsOnAttributes = moduleType.GetTypeInfo()
+                    .GetCustomAttributes(typeof(DependsOnAttribute), true)
+                    .Cast<DependsOnAttribute>();
+
+                foreach (var dependsOnAttribute in dependsOnAttributes)
+                {
+                    dependencies.AddRange(dependsOnAttribute.DependedModuleTypes);
+                }
+            }
+
+            return dependencies;
         }
 
-        if (moduleTypes.Contains(moduleType))
+        private static void AddModuleAndDependenciesRecursively(List<Type> moduleTypes, Type moduleType)
         {
-            return;
-        }
+            if (!IyModule.IsIyModule(moduleType))
+            {
+                throw new ArgumentNullException(nameof(moduleType));
+            }
 
-        moduleTypes.Add(moduleType);
+            if (moduleTypes.Contains(moduleType))
+            {
+                return;
+            }
 
-        var innerModuleTypes = FindDependedModuleTypes(moduleType);
+            moduleTypes.Add(moduleType);
 
-        foreach (var dependedModuleType in innerModuleTypes)
-        {
-            AddModuleAndDependenciesRecursively(moduleTypes, dependedModuleType);
+            var innerModuleTypes = FindDependedModuleTypes(moduleType);
+
+            foreach (var dependedModuleType in innerModuleTypes)
+            {
+                AddModuleAndDependenciesRecursively(moduleTypes, dependedModuleType);
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Iy.Module
+﻿using System;
+
+namespace Iy.Module
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class DependsOnAttribute : Attribute

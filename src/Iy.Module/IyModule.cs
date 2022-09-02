@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -11,7 +11,7 @@ namespace Iy.Module
 
         }
 
-        public virtual void Configure(IApplicationBuilder app)
+        public virtual void Configure(IServiceProvider serviceProvider)
         {
 
         }

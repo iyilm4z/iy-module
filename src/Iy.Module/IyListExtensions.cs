@@ -1,4 +1,7 @@
-﻿namespace Iy.Module
+﻿using System;
+using System.Collections.Generic;
+
+namespace Iy.Module
 {
     internal static class IyListExtensions
     {
