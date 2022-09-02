@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Iy.Module.Demo": {
+    "Iy.Module.Mvc.Demo": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
