@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Iy.Module
 {
-    public static class ApplicationBuilderExtensions
+    public static class IyModuleApplicationBuilderExtensions
     {
         public static IServiceProvider UseIyModule(this IServiceProvider serviceProvider)
         {

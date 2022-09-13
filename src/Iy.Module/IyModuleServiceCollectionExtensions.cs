@@ -2,7 +2,7 @@
 
 namespace Iy.Module
 {
-    public static class ServiceCollectionExtensions
+    public static class IyModuleServiceCollectionExtensions
     {
         public static IServiceCollection AddIyModule<TStartupModule>(this IServiceCollection services)
             where TStartupModule : IyModule

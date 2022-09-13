@@ -21,9 +21,7 @@ namespace Iy.Module
 
             var modules = GetModuleInfos(services, startupModuleType);
 
-            modules = SortByDependency(modules, startupModuleType);
-
-            return modules;
+            return SortByDependency(modules, startupModuleType);
         }
 
         private static List<IyModuleInfo> GetModuleInfos(IServiceCollection services, Type startupModuleType)

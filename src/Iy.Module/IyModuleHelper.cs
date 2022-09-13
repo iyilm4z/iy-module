@@ -28,21 +28,23 @@ namespace Iy.Module
                 throw new ArgumentNullException(nameof(moduleType));
             }
 
-            var dependencies = new List<Type>();
+            var dependedModuleTypes = new List<Type>();
 
-            if (moduleType.GetTypeInfo().IsDefined(typeof(DependsOnAttribute), true))
+            if (!moduleType.GetTypeInfo().IsDefined(typeof(DependsOnAttribute), true))
             {
-                var dependsOnAttributes = moduleType.GetTypeInfo()
-                    .GetCustomAttributes(typeof(DependsOnAttribute), true)
-                    .Cast<DependsOnAttribute>();
-
-                foreach (var dependsOnAttribute in dependsOnAttributes)
-                {
-                    dependencies.AddRange(dependsOnAttribute.DependedModuleTypes);
-                }
+                return dependedModuleTypes;
             }
 
-            return dependencies;
+            var dependsOnAttributes = moduleType.GetTypeInfo()
+                .GetCustomAttributes(typeof(DependsOnAttribute), true)
+                .Cast<DependsOnAttribute>();
+
+            foreach (var dependsOnAttribute in dependsOnAttributes)
+            {
+                dependedModuleTypes.AddRange(dependsOnAttribute.DependedModuleTypes);
+            }
+
+            return dependedModuleTypes;
         }
 
         private static void AddModuleAndDependenciesRecursively(List<Type> moduleTypes, Type moduleType)
@@ -59,9 +61,9 @@ namespace Iy.Module
 
             moduleTypes.Add(moduleType);
 
-            var innerModuleTypes = FindDependedModuleTypes(moduleType);
+            var dependedModuleTypes = FindDependedModuleTypes(moduleType);
 
-            foreach (var dependedModuleType in innerModuleTypes)
+            foreach (var dependedModuleType in dependedModuleTypes)
             {
                 AddModuleAndDependenciesRecursively(moduleTypes, dependedModuleType);
             }
