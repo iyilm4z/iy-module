@@ -2,9 +2,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Iy.Module.Demo.Console;
 
-[DependsOn(
-    typeof(IyKernelModule)
-)]
 public class IyDemoConsoleModule : IyModule
 {
     public override void ConfigureServices(IServiceCollection services)
