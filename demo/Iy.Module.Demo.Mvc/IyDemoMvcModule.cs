@@ -6,9 +6,6 @@ using Microsoft.Extensions.Hosting;
 
 namespace Iy.Module.Demo.Mvc
 {
-    [DependsOn(
-        typeof(IyKernelModule)
-    )]
     public class IyDemoMvcModule : IyModule
     {
         public override void ConfigureServices(IServiceCollection services)
