@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Iy.Module.Tests
 {
-    [DependsOn]
     public class TestModule1 : IyModule
     {
         public override void ConfigureServices(IServiceCollection services)
