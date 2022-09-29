@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Iy.Module.AspNetCore
 {
-    public static class IyModuleAspNetServiceProviderExtensions
+    public static class IyModuleAspNetCoreServiceProviderExtensions
     {
         public static IApplicationBuilder GetRequiredApplicationBuilder(this IServiceProvider serviceProvider)
         {
