@@ -1,5 +1,5 @@
-﻿using System;
-using Iy.Module.AspNetCore;
+﻿using Iy.Module.AspNetCore;
+using Iy.Module.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,13 +8,14 @@ namespace Iy.Module.Demo.Mvc
 {
     public class IyDemoMvcModule : IyModule
     {
-        public override void ConfigureServices(IServiceCollection services)
+        public override void ConfigureServices(IIocRegistrar iocRegistrar)
         {
-            services.AddRazorPages();
+            iocRegistrar.GetServiceCollection().AddRazorPages();
         }
 
-        public override void Configure(IServiceProvider serviceProvider)
+        public override void Configure(IIocResolver iocResolver)
         {
+            var serviceProvider = iocResolver.GetServiceProvider();
             var env = serviceProvider.GetRequiredWebHostEnvironment();
             var app = serviceProvider.GetRequiredApplicationBuilder();
 

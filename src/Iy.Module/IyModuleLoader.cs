@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Iy.Module
 {
     internal static class IyModuleLoader
     {
-        public static List<IyModuleInfo> LoadModules(IServiceCollection services, Type startupModuleType)
+        public static List<IyModuleInfo> LoadModules(IIocRegistrar iocRegistrar, Type startupModuleType)
         {
-            if (services == null)
+            if (iocRegistrar == null)
             {
-                throw new ArgumentNullException(nameof(services));
+                throw new ArgumentNullException(nameof(iocRegistrar));
             }
 
             if (startupModuleType == null)
@@ -19,16 +18,16 @@ namespace Iy.Module
                 throw new ArgumentNullException(nameof(startupModuleType));
             }
 
-            var modules = GetModuleInfos(services, startupModuleType);
+            var modules = GetModuleInfos(iocRegistrar, startupModuleType);
 
             return SortByDependency(modules, startupModuleType);
         }
 
-        private static List<IyModuleInfo> GetModuleInfos(IServiceCollection services, Type startupModuleType)
+        private static List<IyModuleInfo> GetModuleInfos(IIocRegistrar iocRegistrar, Type startupModuleType)
         {
             var modules = new List<IyModuleInfo>();
 
-            FillModules(modules, services, startupModuleType);
+            FillModules(modules, iocRegistrar, startupModuleType);
             SetDependencies(modules);
 
             return modules;
@@ -44,7 +43,7 @@ namespace Iy.Module
             return sortedModules;
         }
 
-        private static void FillModules(List<IyModuleInfo> modules, IServiceCollection services, Type startupModuleType)
+        private static void FillModules(List<IyModuleInfo> modules, IIocRegistrar iocRegistrar, Type startupModuleType)
         {
             var moduleTypes = IyModuleHelper.FindAllModuleTypes(startupModuleType);
 
@@ -52,7 +51,7 @@ namespace Iy.Module
             {
                 var module = (IyModule)Activator.CreateInstance(moduleType);
 
-                services.AddSingleton(moduleType, module);
+                iocRegistrar.AddSingleton(moduleType, module);
 
                 var moduleInfo = new IyModuleInfo(moduleType, module);
 

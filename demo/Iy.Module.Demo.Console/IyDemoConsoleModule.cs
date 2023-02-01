@@ -1,15 +1,13 @@
-using Microsoft.Extensions.DependencyInjection;
-
 namespace Iy.Module.Demo.Console;
 
 public class IyDemoConsoleModule : IyModule
 {
-    public override void ConfigureServices(IServiceCollection services)
+    public override void ConfigureServices(IIocRegistrar iocRegistrar)
     {
-        services.AddTransient<ConsoleService>();
+        iocRegistrar.AddTransient<ConsoleService>();
     }
 
-    public override void Configure(IServiceProvider serviceProvider)
+    public override void Configure(IIocResolver iocResolver)
     {
     }
 }

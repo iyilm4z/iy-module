@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\Iy.Module.AspNetCore\Iy.Module.AspNetCore.csproj" />
+      <ProjectReference Include="..\..\src\Iy.Module.Extensions.DependencyInjection\Iy.Module.Extensions.DependencyInjection.csproj" />
     </ItemGroup>
   
 </Project>

@@ -1,9 +1,10 @@
+using Iy.Module.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Iy.Module.AspNetCore
 {
-    public static class IyModuleAspNetCoreServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
         public static void AddIyModuleAspNetCore<TStartupModule>(this IServiceCollection services)
             where TStartupModule : IyModule

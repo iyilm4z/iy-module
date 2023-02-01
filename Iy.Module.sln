@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iy.Module.Demo.Mvc", "demo\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iy.Module.Demo.Console", "demo\Iy.Module.Demo.Console\Iy.Module.Demo.Console.csproj", "{F9DF4833-D7D4-4EC5-80A2-A8A9E7872371}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iy.Module.Extensions.DependencyInjection", "src\Iy.Module.Extensions.DependencyInjection\Iy.Module.Extensions.DependencyInjection.csproj", "{ACF18B23-2A20-4316-A687-152961977264}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F9DF4833-D7D4-4EC5-80A2-A8A9E7872371}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9DF4833-D7D4-4EC5-80A2-A8A9E7872371}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9DF4833-D7D4-4EC5-80A2-A8A9E7872371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACF18B23-2A20-4316-A687-152961977264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACF18B23-2A20-4316-A687-152961977264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACF18B23-2A20-4316-A687-152961977264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACF18B23-2A20-4316-A687-152961977264}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +64,6 @@ Global
 		{C9B7F2AE-B4B6-402C-91B4-6EB1D3DA168C} = {3260C742-5425-4E7F-8AFF-A3572E56772F}
 		{E6CDD487-414E-4A4E-B2A8-D6446A5E6C54} = {B72089D1-CD0A-42FC-93CC-F070D37978AE}
 		{F9DF4833-D7D4-4EC5-80A2-A8A9E7872371} = {B72089D1-CD0A-42FC-93CC-F070D37978AE}
+		{ACF18B23-2A20-4316-A687-152961977264} = {3260C742-5425-4E7F-8AFF-A3572E56772F}
 	EndGlobalSection
 EndGlobal

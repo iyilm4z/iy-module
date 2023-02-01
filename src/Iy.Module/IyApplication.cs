@@ -1,39 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Iy.Module
 {
     public class IyApplication
     {
-        private readonly IServiceCollection _services;
+        private readonly IIocRegistrar _iocRegistrar;
         private readonly Type _startupModuleType;
 
         private List<IyModuleInfo> _modules;
 
-        public IyApplication(Type startupModuleType, IServiceCollection services)
+        public IyApplication(Type startupModuleType, IIocRegistrar iocRegistrar)
         {
             _startupModuleType = startupModuleType ?? throw new ArgumentNullException(nameof(startupModuleType));
-            _services = services ?? throw new ArgumentNullException(nameof(services));
+            _iocRegistrar = iocRegistrar ?? throw new ArgumentNullException(nameof(iocRegistrar));
 
-            services.AddSingleton(this);
+            iocRegistrar.AddSingleton(this);
         }
 
         public void LoadModules()
         {
-            _modules = IyModuleLoader.LoadModules(_services, _startupModuleType);
+            _modules = IyModuleLoader.LoadModules(_iocRegistrar, _startupModuleType);
 
             foreach (var module in _modules)
             {
-                module.Instance.ConfigureServices(_services);
+                module.Instance.ConfigureServices(_iocRegistrar);
             }
         }
 
-        public void InitModules(IServiceProvider serviceProvider)
+        public void InitModules(IIocResolver iocResolver)
         {
             foreach (var module in _modules)
             {
-                module.Instance.Configure(serviceProvider);
+                module.Instance.Configure(iocResolver);
             }
         }
     }

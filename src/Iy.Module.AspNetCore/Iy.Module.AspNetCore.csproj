@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Iy.Module\Iy.Module.csproj"/>
+        <ProjectReference Include="..\Iy.Module.Extensions.DependencyInjection\Iy.Module.Extensions.DependencyInjection.csproj" />
     </ItemGroup>
     
 </Project>
